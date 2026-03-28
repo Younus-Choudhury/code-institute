@@ -1,75 +1,24 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+#The python code to execute is called Finalcodeinstitute.py ,  The LMS, Various Ai,  lectures from code instiitute as well as various  online by youTubers like Code Bros etc have been used extensivly to generate the assignment code.   After the graphs were generated in python I also used chat GPT to describe the graphs and generate a report which is below and would be expected alongside any data analytics project. I was also going to have each graph described however ran out of time
+# An Analysis of Retail Store Performance (2010–2012)
 
-## Template Instructions
+This report examines retail performance data from 45 stores during the 2010–2012 period by reviewing four key visualisations. These include the scatter plot *"Store Performance: Size vs Total Sales (2010–2012)"*, the bar chart *"Weekly Sales Distribution"*, the heat map *"Weekly Sales Distribution"*, and the boxplot *"Sales Distribution by Store Type (2010–2012)"*. Together, these charts provide a multifaceted view of how store size, seasonal fluctuations, and operational consistency shape overall sales performance.
 
-Welcome,
+## Store Performance: Size vs Total Sales (2010–2012) – Scatter Plot
 
-This is the Code Institute student template for the Data Analytics capstone project. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+The scatter plot clearly demonstrates that larger retail outlets tend to achieve higher total sales. In this diagram, stores classified as Type A cluster in the upper-right quadrant, signifying that economies of scale and superior operational capabilities play a pivotal role in driving revenue. While the trend shows that greater square footage generally correlates with increased sales, the relationship is not strictly linear. Several mid-sized Type B stores do not fully keep pace with their larger counterparts, implying that factors such as business model and execution quality are also crucial. This chart invites decision-makers to consider not only the physical store size but also the operational strategies deployed across different formats.
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+## Weekly Sales Distribution – Bar Chart
 
-## How to use this repo
+The bar chart, titled *"Weekly Sales Distribution"*, plots the frequency of weekly sales figures. The x-axis represents weekly sales (in dollars), while the y-axis shows the frequency of those sales. The distribution is heavily right-skewed; most weeks register moderate sales, but a few outlier weeks bring extremely high figures. Two reference markers are evident in the chart—a red dashed line indicating the mean weekly sale of $16,224 and a green dashed line showing the median of $7,739. The pronounced difference between mean and median figures reinforces the influence of exceptional weeks on overall performance. Such a disparity suggests that while typical weeks may see modest sales, a small number of high-performing periods contribute disproportionately to annual totals.
 
-1. Use this template to create your GitHub project repo. Click the Use this template button, then click Create a new repository.
+## Weekly Sales Distribution – Heat Map
 
-1. Copy the URL of your repository to your clipboard.
+Adding a temporal dimension, the heat map titled *"Weekly Sales Distribution"* presents a year-long view of average weekly sales across the store network. This visualization uncovers distinct seasonal patterns within the retail cycle. A marked peak is visible around Week 17, hinting at heightened activity during this period—possibly driven by well-timed promotional campaigns or seasonal consumer demand. Conversely, Week 26 consistently records lower sales, indicating a natural slowdown following peak periods. For retail managers, these seasonal trends underscore the importance of timing marketing campaigns and operational adjustments to better balance the highs and lows of the trading cycle.
 
-1. In VS Code, select File - Open Folder.
+## Sales Distribution by Store Type (2010–2012) – Boxplot
 
-1. Select your vscode-projects folder, then click the Select Folder button on Windows, or Open button on Mac.
+The boxplot *"Sales Distribution by Store Type (2010–2012)"* further refines our understanding by comparing weekly sales across different store types. Type A and Type B stores display a median weekly sale around or just above $40,000, yet Type A records occasional outliers that reflect exceptionally high sales events—likely the result of targeted promotions. In contrast, the boxplot for Type C stores shows both a lower median and a wider interquartile range, suggesting a steadier but persistently lower level of performance. This divergence points to different operational challenges and opportunities: while larger formats might rely on powerful promotional spikes, smaller stores would benefit from strategies focused on elevating their consistent, underlying performance.
 
-1. From the top menu in VS Code, select Terminal > New Terminal to open the terminal.
+## Conclusion
 
-1. In the terminal, type git clone followed by the URL of your GitHub repository. Then hit Enter. This command will download all the files in your GitHub repository into your vscode-projects folder.
-
-1. In VS Code, select File > Open Folder again.
-
-1. This time, navigate to and select the folder for the project you just downloaded. Then, click Select Folder.
-
-1. A virtual environment is necessary when working with Python projects to ensure each project's dependencies are kept separate from each other. You need to create your virtual environment, also called a venv, and then ensure that it is activated any time you return to your workspace.
-Click the gear icon in the lower left-hand corner of the screen to open the Manage menu and select Command Palette to open the VS Code command palette.
-
-1. In the command palette, type: create environment and select Python: Create Environment…
-
-1. Choose Venv from the dropdown list.
-
-1. Choose the Python version you installed earlier. Currently, we recommend Python 3.12.8
-
-1. DO NOT click the box next to requirements.txt, as you need to do more steps before you can install your dependencies. Click OK.
-
-1. You will see a .venv folder appear in the file explorer pane to show that the virtual environment has been created.
-
-1. Important: Please add the .venv to your .gitignore file
-
-1. Return to the terminal by clicking on the TERMINAL tab or click on the Terminal menu and choose New Terminal if no terminal is currently open.
-
-1. In the terminal, use the command below to install your dependencies. This may take several minutes.
- `pip3 install -r requirements.txt`
-
-1. Open the jupyter_notebooks directory, and click on the notebook you want to open.
-
-1. Click the kernel button and choose Python Environments.
-
-Note that the kernel says Python 3.12.2 as it inherits from the workspace, so it will be Python-3.12.2 as installed by our template. To confirm this, you can use `! python --version` in a notebook code cell.
-
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-* Set the runtime.txt Python version to a [Heroku-22](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+The integrated insights from these visualisations reveal that retail success is a complex interplay of physical scale and refined operational strategy. For UK-based MBA strategists, the clear lesson is that while store size can drive increased sales, it is equally essential to manage seasonal trends, promotional timing, and operational detail to achieve sustainable long-term profitability. By aligning the tangible asset of store size with tactical trading strategies and market rhythms, retail managers can build a robust and resilient business model that thrives in a dynamic marketplace.

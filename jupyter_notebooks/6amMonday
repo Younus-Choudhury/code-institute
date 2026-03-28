@@ -1,0 +1,181 @@
+# Add this alternative chart display method to your RetailAnalytics class
+
+def display_charts_alternative(self):
+    """Alternative method to display charts with multiple backends"""
+    print("\n🎨 Alternative Chart Display Method")
+    
+    # Try different matplotlib backends
+    backends_to_try = ['TkAgg', 'Qt5Agg', 'Qt4Agg', 'GTKAgg', 'Agg']
+    
+    for backend in backends_to_try:
+        try:
+            import matplotlib
+            matplotlib.use(backend)
+            print(f"✅ Using {backend} backend")
+            break
+        except:
+            continue
+    else:
+        print("⚠️ Using default backend")
+    
+    # Force clear any existing plots
+    plt.close('all')
+    
+    # Method 1: Simple test plot
+    plt.figure(figsize=(10, 6))
+    plt.plot([1, 2, 3, 4], [1, 4, 2, 3], 'o-')
+    plt.title('Test Plot - If you see this, matplotlib is working!')
+    plt.xlabel('X values')
+    plt.ylabel('Y values')
+    plt.grid(True)
+    
+    # Try multiple display methods
+    try:
+        plt.show(block=False)
+        print("✅ Test plot displayed with show(block=False)")
+    except Exception as e:
+        print(f"⚠️ show(block=False) failed: {e}")
+        try:
+            plt.show()
+            print("✅ Test plot displayed with show()")
+        except Exception as e2:
+            print(f"⚠️ show() failed: {e2}")
+            # Save as image instead
+            plt.savefig('test_plot.png', dpi=150, bbox_inches='tight')
+            print("✅ Test plot saved as 'test_plot.png'")
+    
+    input("Press Enter to continue with actual analysis...")
+
+# Alternative: Create charts as separate functions for easier debugging
+
+def create_simple_store_chart(merged_df):
+    """Simplified store performance chart"""
+    print("\n📊 Creating Simple Store Performance Chart")
+    
+    try:
+        # Simple aggregation
+        store_sales = merged_df.groupby('Store')['Weekly_Sales'].sum().reset_index()
+        store_sales = store_sales.sort_values('Weekly_Sales', ascending=False).head(10)
+        
+        # Create simple bar chart
+        plt.figure(figsize=(12, 6))
+        plt.bar(store_sales['Store'].astype(str), store_sales['Weekly_Sales'] / 1e6)
+        plt.title('Top 10 Stores by Total Sales', fontsize=14, fontweight='bold')
+        plt.xlabel('Store ID')
+        plt.ylabel('Total Sales ($ Millions)')
+        plt.xticks(rotation=45)
+        plt.grid(axis='y', alpha=0.3)
+        plt.tight_layout()
+        
+        # Multiple save/display attempts
+        plt.savefig('simple_store_chart.png', dpi=150, bbox_inches='tight')
+        print("✅ Saved simple_store_chart.png")
+        
+        # Try to display
+        try:
+            plt.show(block=True)  # Blocking show
+        except:
+            print("⚠️ Chart display failed, but image saved successfully")
+        
+        plt.close()
+        
+    except Exception as e:
+        print(f"❌ Error creating simple store chart: {e}")
+
+def create_simple_time_chart(merged_df):
+    """Simplified time series chart"""
+    print("\n📊 Creating Simple Time Series Chart")
+    
+    try:
+        # Simple time aggregation
+        if 'Date' in merged_df.columns:
+            daily_sales = merged_df.groupby('Date')['Weekly_Sales'].sum().reset_index()
+            daily_sales = daily_sales.sort_values('Date')
+            
+            plt.figure(figsize=(12, 6))
+            plt.plot(daily_sales['Date'], daily_sales['Weekly_Sales'] / 1e6, linewidth=2)
+            plt.title('Daily Sales Trend', fontsize=14, fontweight='bold')
+            plt.xlabel('Date')
+            plt.ylabel('Daily Sales ($ Millions)')
+            plt.xticks(rotation=45)
+            plt.grid(True, alpha=0.3)
+            plt.tight_layout()
+            
+            plt.savefig('simple_time_chart.png', dpi=150, bbox_inches='tight')
+            print("✅ Saved simple_time_chart.png")
+            
+            try:
+                plt.show(block=True)
+            except:
+                print("⚠️ Chart display failed, but image saved successfully")
+            
+            plt.close()
+        else:
+            print("⚠️ No Date column available for time series")
+            
+    except Exception as e:
+        print(f"❌ Error creating simple time chart: {e}")
+
+# Add this method to test chart display capability
+def test_chart_display():
+    """Test if charts can be displayed in current environment"""
+    print("🧪 Testing Chart Display Capability...")
+    
+    # Test 1: Basic matplotlib
+    try:
+        import matplotlib.pyplot as plt
+        plt.figure(figsize=(8, 4))
+        plt.plot([1, 2, 3], [1, 4, 2], 'o-')
+        plt.title('Matplotlib Test')
+        plt.savefig('matplotlib_test.png')
+        plt.show()
+        plt.close()
+        print("✅ Basic matplotlib works")
+    except Exception as e:
+        print(f"❌ Basic matplotlib failed: {e}")
+    
+    # Test 2: Seaborn
+    try:
+        import seaborn as sns
+        import numpy as np
+        data = np.random.randn(100)
+        plt.figure(figsize=(8, 4))
+        sns.histplot(data)
+        plt.title('Seaborn Test')
+        plt.savefig('seaborn_test.png')
+        plt.show()
+        plt.close()
+        print("✅ Seaborn works")
+    except Exception as e:
+        print(f"❌ Seaborn failed: {e}")
+    
+    # Test 3: Plotly
+    try:
+        import plotly.express as px
+        import pandas as pd
+        df = pd.DataFrame({'x': [1, 2, 3, 4], 'y': [10, 11, 12, 13]})
+        fig = px.scatter(df, x='x', y='y', title='Plotly Test')
+        fig.write_html('plotly_test.html')
+        fig.show()
+        print("✅ Plotly works")
+    except Exception as e:
+        print(f"❌ Plotly failed: {e}")
+
+# Usage example:
+if __name__ == "__main__":
+    # First, test if charts can display
+    test_chart_display()
+    
+    # Then run your main analysis
+    analytics = RetailAnalytics()
+    
+    # Try the alternative display method first
+    if analytics.load_data() and analytics.merge_datasets():
+        analytics.display_charts_alternative()
+        
+        # Create simplified charts
+        create_simple_store_chart(analytics.merged_df)
+        create_simple_time_chart(analytics.merged_df)
+    
+    # Finally, run the full analysis
+    analytics.run_complete_analysis()
